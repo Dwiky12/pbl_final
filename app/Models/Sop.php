@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Sop extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'id_prodi',
+        'id_kategorisop',
+        'nama_sop',
+        'file_dokumen',
+        'status'
+    ];
+
+    public function prodi() {
+        return $this->belongsTo(Prodi::class);
+    }
+
+    public function kategoriSop() {
+        return $this->belongsTo(KategoriSop::class);
+    }
+}
