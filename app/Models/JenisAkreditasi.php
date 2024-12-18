@@ -14,6 +14,6 @@ class JenisAkreditasi extends Model
     ];
 
     public function akreditasi() {
-        return $this->hasMany(Akreditasi::class);
+        return $this->hasMany(Akreditasi::class, id_jenisakreditasi);
     }
 }

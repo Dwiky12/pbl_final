@@ -14,7 +14,7 @@ class Prodi extends Model
     ];
     
     public function akreditasi() {
-        return $this->hasMany(Akkreditasi::class);
+        return $this->hasMany(Akreditasi::class);
     }
 
     public function visiMisi() {

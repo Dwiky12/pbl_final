@@ -17,14 +17,14 @@ class AkreditasiResource extends Resource
 {
     protected static ?string $model = Akreditasi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Dokumen';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('id_prodi')
-                ->relationship('prodi', 'nama_prodi')
+                ->relationship('prodi', 'nama_prodi', fn ($query) => $query)
                 ->required(),
                 Forms\Components\TextInput::make('no_sk')
                 ->required(),
@@ -45,6 +45,13 @@ class AkreditasiResource extends Resource
                 ->required(),
                 Forms\Components\DatePicker::make('tanggal_berakhir')
                 ->required(),
+                // Forms\Components\Select::make('status')
+                // ->options([
+                //     'pending' => 'Pending',
+                //     'confirmed' => 'Confirmed',
+                //     'rejected' => 'Rejected',
+                // ])
+                // ->required(),
                 Forms\Components\FileUpload::make('file_dokumen')
                 ->directory('akreditasi')
                 ->columnSpan(2),
@@ -70,10 +77,14 @@ class AkreditasiResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ActionGroup::make([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            ])
+        ])
+        ->button()
+        ->label('Actions'),
+        ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

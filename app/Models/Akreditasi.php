@@ -22,19 +22,23 @@ class Akreditasi extends Model
         'status'
     ];
 
-    public function prodi() {
-        return $this->belongsTo(Prodi::class);
-    }
+    public function prodi()
+{
+    return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+}
 
-    public function jenisAkreditasi() {
-        return $this->belongsTo(JenisAkreditasi::class);
-    }
+public function jenisAkreditasi()
+{
+    return $this->belongsTo(JenisAkreditasi::class, 'id_jenisakreditasi');
+}
 
-    public function lembaga() {
-        return $this->belongsTo(Lembaga::class);
-    }
+public function lembaga()
+{
+    return $this->belongsTo(Lembaga::class, 'id_lembaga');
+}
 
-    public function tingkat() {
-        return $this->belongsTo(Tingkat::class);
-    }
+public function tingkat()
+{
+    return $this->belongsTo(Tingkat::class, 'id_tingkat');
+}
 }

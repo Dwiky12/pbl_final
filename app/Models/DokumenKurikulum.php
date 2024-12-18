@@ -20,6 +20,6 @@ class DokumenKurikulum extends Model
     ];
 
     public function prodi() {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 }

@@ -17,14 +17,14 @@ class VisiMisiResource extends Resource
 {
     protected static ?string $model = VisiMisi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Dokumen';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('id_prodi')
-                ->relationship('prodi', 'nama_prodi')
+                ->relationship('prodi', 'nama_prodi', fn ($query) => $query)
             ->columnSpan(2)
             ->required(),
                 Forms\Components\Textarea::make('visi')
@@ -65,9 +65,13 @@ class VisiMisiResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+            ])
+            ->button()
+            ->label('Actions'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

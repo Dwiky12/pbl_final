@@ -17,14 +17,14 @@ class SopResource extends Resource
 {
     protected static ?string $model = Sop::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Dokumen';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('id_prodi')
-                ->relationship('prodi', 'nama_prodi')
+                ->relationship('prodi', 'nama_prodi', fn ($query) => $query)
                 ->columnSpan(2)
                 ->required(),
                 Forms\Components\Select::make('id_kategorisop')
@@ -43,7 +43,7 @@ class SopResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('prodi.nama_prodi'),
-                Tables\Columns\TextColumn::make('kategoriSop.nama_sop'),
+                Tables\Columns\TextColumn::make('kategoriSop.nama_kategori'),
                 Tables\Columns\TextColumn::make('nama_sop'),
                 Tables\Columns\ImageColumn::make('file_dokumen'),
                 Tables\Columns\TextColumn::make('status'),
@@ -52,9 +52,13 @@ class SopResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+            ])
+            ->button()
+            ->label('Actions'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
