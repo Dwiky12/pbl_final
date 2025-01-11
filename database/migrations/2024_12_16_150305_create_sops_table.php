@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('id_kategorisop')->constrained('kategori_sops')->cascadeOnDelete()->cascadeOnUpdate();;
             $table->string('nama_sop');
             $table->string('file_dokumen')->nullable();
-            $table->string('status')->default('pending'); // Tambahkan field status
+            $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Tambahkan field status
+            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }

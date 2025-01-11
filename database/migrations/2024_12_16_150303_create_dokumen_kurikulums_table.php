@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_prodi')->constrained('prodis')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nama_kurikulum');
-            $table->year('tahun');
+            $table->year('tahun_pemberlakuan');
             $table->string('semester');
             $table->integer('revisi_ke');
             $table->string('file_dokumen')->nullable();
-            $table->string('status')->default('Pending');
+            $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Tambahkan field status
+            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }

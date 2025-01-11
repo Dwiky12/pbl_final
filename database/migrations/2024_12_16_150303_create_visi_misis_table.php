@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('visi_misis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_prodi')->constrained('prodis')->cascadeOnDelete()->cascadeOnUpdate();;
-            $table->string('visi');
-            $table->string('misi');
+            $table->text('visi');
+            $table->text('misi');
             $table->year('tahun_pemberlakuan');
             $table->string('semester');
             $table->integer('revisi_ke');
             $table->string('file_dokumen')->nullable();
-            $table->string('status')->default('pending'); // Tambahkan field status
+            $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Tambahkan field status
+            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }

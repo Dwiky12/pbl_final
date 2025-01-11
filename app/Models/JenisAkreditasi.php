@@ -10,10 +10,10 @@ class JenisAkreditasi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'akreditasi' // Nama kolom yang dapat diisi
+        'akreditasi',
     ];
 
     public function akreditasi() {
-        return $this->hasMany(Akreditasi::class, id_jenisakreditasi);
+        return $this->hasMany(Akreditasi::class);
     }
 }

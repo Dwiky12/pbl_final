@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('profil_prodis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_prodi')->constrained('prodis')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer('tahun_penggunaan');
+            $table->year('tahun_penggunaan');
             $table->integer('revisi_ke');
             $table->string('file_dokumen')->nullable();
-            $table->string('status')->default('pending'); // Tambahkan field status
+            $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Tambahkan field status
+            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }

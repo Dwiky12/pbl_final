@@ -10,7 +10,7 @@ class Tingkat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tingkatan' // Kolom yang dapat diisi
+        'tingkatan',
     ];
 
     public function akreditasi() {

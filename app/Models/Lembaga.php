@@ -10,7 +10,7 @@ class Lembaga extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_lembaga' // Kolom yang dapat diisi
+        'nama_lembaga',
     ];
 
     public function akreditasi() {

@@ -10,7 +10,7 @@ class KategoriSop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_kategori' // Kolom yang dapat diisi
+        'nama_kategori',
     ];
 
     public function sop() {

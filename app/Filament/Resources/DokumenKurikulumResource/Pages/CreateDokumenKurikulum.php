@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateDokumenKurikulum extends CreateRecord
 {
     protected static string $resource = DokumenKurikulumResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

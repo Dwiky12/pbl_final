@@ -14,7 +14,7 @@ class ProdiSeeder extends Seeder
     public function run(): void
     {
         Prodi::create([
-            'nama_prodi' => 'Teknologi Informasi',
+            'nama_prodi' => 'TRPL',
         ]);
     }
 }

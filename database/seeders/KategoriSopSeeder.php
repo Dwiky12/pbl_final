@@ -50,11 +50,11 @@ class KategoriSopSeeder extends Seeder
         ]);
 
         KategoriSop::create([
-            'nama_kategori' => 'Mekanisme Penentuan Rekrutmen Tenaga Pendidikan', 
+            'nama_kategori' => 'Mekanisme Usulan Rekrutmen Tenaga Pendidikan', 
         ]);
 
         KategoriSop::create([
-            'nama_kategori' => 'Mekanisme Penentuan Rekrutmen Tenaga Kependidikan', 
+            'nama_kategori' => 'Mekanisme Usukan Rekrutmen Tenaga Kependidikan', 
         ]);
 
         KategoriSop::create([

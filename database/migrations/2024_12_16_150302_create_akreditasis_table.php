@@ -22,7 +22,8 @@ return new class extends Migration
                 $table->date('tanggal_mulai');
                 $table->date('tanggal_berakhir');
                 $table->string('file_dokumen')->nullable();
-                $table->string('status')->default('pending'); // Tambahkan field status
+                $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Tambahkan field status
+                $table->text('komentar')->nullable();
                 $table->timestamps();
         });
     }

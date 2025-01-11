@@ -10,7 +10,7 @@ class Prodi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_prodi' // Kolom yang dapat diisi
+        'nama_prodi',
     ];
     
     public function akreditasi() {
@@ -31,6 +31,27 @@ class Prodi extends Model
 
     public function sop() {
         return $this->hasMany(Sop::class);
+    }
+    public function tenagaAhli() {
+        return $this->hasMany(TenagaAhli::class);
+    }
+    public function koleksiJurnal() {
+        return $this->hasMany(KoleksiJurnal::class);
+    }
+    public function seminar() {
+        return $this->hasMany(Seminar::class);
+    }
+    public function pengembanganDiri() {
+        return $this->hasMany(PengembanganDiri::class);
+    }
+    public function ruangKelas() {
+        return $this->hasMany(RuangKelas::class);
+    }
+    public function pengabdian() {
+        return $this->hasMany(Pengabdian::class);
+    }
+    public function kebangsaan() {
+        return $this->hasMany(Kebangsaan::class);
     }
 
 }
