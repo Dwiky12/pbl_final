@@ -199,7 +199,8 @@ class SopResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->hidden(auth()->user()->role == "dosen"),
                     ExportBulkAction::make()->exporter(SopExporter::class)
                         ->label('Export')
                         ->color('info')

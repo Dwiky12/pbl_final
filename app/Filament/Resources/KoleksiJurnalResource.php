@@ -259,7 +259,6 @@ class KoleksiJurnalResource extends Resource
                                 ->required()
                                 ->placeholder('Tambah alasan penolakan'),
                         ])
-                        // ->hidden(fn () => auth()->user()->role == "kaprodi" && $record->status) // Dynamically hide the action
                         ->action(function (KoleksiJurnal $record, array $data) {
                             $record->update([
                                 'status' => KoleksiJurnal::STATUS_TOLAK,
@@ -280,7 +279,8 @@ class KoleksiJurnalResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->hidden(auth()->user()->role == "dosen"),
                     ExportBulkAction::make()->exporter(KoleksiJurnalExporter::class)
                         ->label('Export')
                         ->color('info')

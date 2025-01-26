@@ -202,7 +202,8 @@ class ProfilProdiResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->hidden(auth()->user()->role == "dosen"),
                     ExportBulkAction::make()->exporter(ProfilProdiExporter::class)
                         ->label('Export')
                         ->color('info')

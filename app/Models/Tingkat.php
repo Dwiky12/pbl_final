@@ -13,7 +13,13 @@ class Tingkat extends Model
         'tingkatan',
     ];
 
-    public function akreditasi() {
+    public function akreditasi()
+    {
         return $this->hasMany(Akreditasi::class);
+    }
+
+    public function kebangsaan()
+    {
+        return $this->hasMany(Kebangsaan::class);
     }
 }

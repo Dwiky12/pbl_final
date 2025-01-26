@@ -54,8 +54,8 @@ class PengembanganDiriResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('semester')
                     ->required(),
-                Forms\Components\Select::make('id_pegawai')
-                    ->relationship('pegawai', 'nama')
+                Forms\Components\Select::make('id_user')
+                    ->relationship('user', 'name')
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_mulai')
                     ->required(),
@@ -121,7 +121,7 @@ class PengembanganDiriResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->alignCenter(),
-                Tables\Columns\TextColumn::make('pegawai.nama')
+                Tables\Columns\TextColumn::make('user.name')
                     ->limit(20)
                     ->sortable()
                     ->searchable()
@@ -281,7 +281,8 @@ class PengembanganDiriResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->hidden(auth()->user()->role == "dosen"),
                     ExportBulkAction::make()->exporter(PengembanganDiriExporter::class)
                         ->label('Export')
                         ->color('info')

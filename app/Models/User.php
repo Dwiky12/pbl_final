@@ -53,26 +53,30 @@ class User extends Authenticatable implements HasAvatar
     }
 
     public function getFilamentAvatarUrl(): ?string
-{
-    $avatarColumn = config('filament-edit-profile.avatar_column', 'avatar_url');
-    return $this->{$avatarColumn} ? Storage::url($this->{$avatarColumn}) : null;
-}
+    {
+        $avatarColumn = config('filament-edit-profile.avatar_column', 'avatar_url');
+        return $this->{$avatarColumn} ? Storage::url($this->{$avatarColumn}) : null;
+    }
 
-// Di dalam model User
-public function getNoHpAttribute(): ?string
-{
-    return $this->custom_fields['no_hp'] ?? null;
-}
+    // Di dalam model User
+    public function getNoHpAttribute(): ?string
+    {
+        return $this->custom_fields['no_hp'] ?? null;
+    }
 
-public function getJenisKelaminAttribute(): ?string
-{
-    return $this->custom_fields['jenis_kelamin'] ?? null;
-}
+    public function getJenisKelaminAttribute(): ?string
+    {
+        return $this->custom_fields['jenis_kelamin'] ?? null;
+    }
 
-public function getAlamatAttribute(): ?string
-{
-    return $this->custom_fields['alamat'] ?? null;
-}
+    public function getAlamatAttribute(): ?string
+    {
+        return $this->custom_fields['alamat'] ?? null;
+    }
 
+    public function pengembanganDiri()
+    {
+        return $this->hasMany(PengembanganDiri::class);
+    }
 
 }

@@ -13,19 +13,19 @@ class PengembanganDiri extends Model
     const STATUS_SETUJU = 'disetujui';
     const STATUS_TOLAK = 'ditolak';
 
-    protected $fillable = [ 
-        'id_prodi', 
-        'nama_kegiatan', 
-        'tahun', 
-        'semester', 
-        'id_pegawai', 
-        'tanggal_mulai', 
-        'tanggal_selesai', 
-        'jenis', 
-        'id_tingkat', 
-        'penyelenggara', 
-        'tempat', 
-        'lama', 
+    protected $fillable = [
+        'id_prodi',
+        'nama_kegiatan',
+        'tahun',
+        'semester',
+        'id_user',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'jenis',
+        'id_tingkat',
+        'penyelenggara',
+        'tempat',
+        'lama',
         'keterangan',
         'file_dokumen',
         'status',
@@ -34,22 +34,25 @@ class PengembanganDiri extends Model
 
     protected static function booted()
     {
-        static::updating(function ($pengembangandiri){
-            if (auth()->check() && auth()->user()->role === 'dosen' && $pengembangandiri->getOriginal('status') === 'ditolak'){
+        static::updating(function ($pengembangandiri) {
+            if (auth()->check() && auth()->user()->role === 'dosen' && $pengembangandiri->getOriginal('status') === 'ditolak') {
                 $pengembangandiri->status = 'pending';
             }
         });
     }
 
-    public function prodi() {
+    public function prodi()
+    {
         return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 
-    public function pegawai() {
-        return $this->belongsTo(Pegawai::class, 'id_pegawai');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function tingkat() {
+    public function tingkat()
+    {
         return $this->belongsTo(Tingkat::class, 'id_tingkat');
     }
 }
